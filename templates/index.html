@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>⚡ EV Charging Energy Prediction</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 8px #00ffea;
+        }
+
+        form {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 0 15px #00ffd0;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #a0f0ff;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px 0;
+            background: #00fff7;
+            border: none;
+            border-radius: 8px;
+            color: #000dff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #00cfcf;
+        }
+
+        .prediction {
+            margin-top: 30px;
+            background: #002255;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            text-align: center;
+            box-shadow: 0 0 12px #00fff7;
+        }
+
+        footer {
+            margin-top: auto;
+            color: #00fff7cc;
+            font-size: 0.9rem;
+            padding: 10px 0 5px;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>⚡ EV Charging Energy Prediction</h1>
+    <form method="POST" action="/predict">
+        <label for="port">🔌 Port Number (e.g., 1)</label>
+        <input type="number" id="port" name="port" step="1" min="1" required placeholder="Enter port number" />
+
+        <label for="lat">🌍 Latitude (e.g., 34.05)</label>
+        <input type="number" id="lat" name="lat" step="0.0001" required placeholder="Enter latitude" />
+
+        <label for="lon">🌍 Longitude (e.g., -122.42)</label>
+        <input type="number" id="lon" name="lon" step="0.0001" required placeholder="Enter longitude" />
+
+        <label for="duration">⏱️ Total Session Duration (seconds)</label>
+        <input type="number" id="duration" name="duration" step="1" min="0" required placeholder="e.g., 1800" />
+
+        <label for="charging">⚡ Actual Charging Time (seconds)</label>
+        <input type="number" id="charging" name="charging" step="1" min="0" required placeholder="e.g., 1600" />
+
+        <input type="submit" value="Predict ⚡" />
+    </form>
+
+    {% if prediction_text %}
+    <div class="prediction">{{ prediction_text }}</div>
+    {% endif %}
+
+    <footer>Made by Parvej Ajij Shaikh 🚀</footer>
+</body>
+
+</html>
